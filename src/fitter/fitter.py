@@ -152,6 +152,9 @@ class Fitter(object):
             self.distributions = get_common_distributions()
         elif isinstance(distributions, str):
             self.distributions = [distributions]
+        else:
+            if not set(distributions).issubset(set(get_distributions())):
+                raise RuntimeError("Invalid distribution")
 
         self.bins = bins
         self.verbose = verbose
